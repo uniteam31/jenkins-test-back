@@ -54,9 +54,7 @@ pipeline {
             }
             steps {
                 sshagent(['jenkins-test_ssh']) {
-                    sh 'ssh root@176.114.90.241 "docker pull def1s/jenkins-test-back"'
-                    sh 'ssh root@176.114.90.241 "if docker ps -a --format \\"{{.Names}}\\" | grep -q \\"jenkins-test-back\\"; then docker stop jenkins-test-back || true; docker rm jenkins-test-back || true; fi"'
-                    sh 'ssh root@176.114.90.241 "docker run -dp 3000:80 --name jenkins-test-back def1s/jenkins-test-back"'
+                     sh 'ssh root@176.114.90.241 "/root/jenkins-test-orch/deploy.sh"'
                 }
             }
         }

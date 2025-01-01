@@ -15,7 +15,7 @@ RUN yarn init -2
 # CHECKOUT
 ARG BRANCH=dev
 RUN git clone https://github.com/uniteam31/jenkins-test-back.git
-WORKDIR /jenkins-test
+WORKDIR /jenkins-test-back
 RUN git fetch --all
 RUN git pull
 RUN git checkout ${BRANCH}
@@ -24,6 +24,8 @@ RUN git checkout ${BRANCH}
 RUN yarn install
 RUN yarn build
 
-WORKDIR /jenkins-test/dist
+WORKDIR /jenkins-test-back/dist
+
+EXPOSE 8080
 
 CMD ["node", "main.js"]
